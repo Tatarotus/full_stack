@@ -1,0 +1,62 @@
+.logon-container {
+  overflow: hidden;
+  width: 80%;
+  margin: 30px auto;
+  user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+.logon-container .left {
+  width: 45%;
+  height: 100vh;
+  position: relative;
+  max-width: 380px;
+}
+
+.logon-container .left img{
+  width: 100%;
+  max-width: 200px;
+}
+
+.logon-container .left .logon-section form {
+  margin: 5px auto;
+  position: absolute;
+  top: 50%;
+  min-width: 280px;
+  transform: translateY(-50%);
+}
+
+.logon-container .left .logon-section form .logon {
+  font-family: "Schoolbell", cursive;
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.logon-container .left .logon-section form #ong_id {
+  margin-bottom: 0.5rem;
+  box-shadow: 0 0 6px rgba(163, 163, 163, 0.5);
+  margin-left: 5px;
+}
+
+.logon-container .left .logon-section form #ong_id:focus {
+  box-shadow: 0 0 6px rgba(35, 173, 255, 1);
+}
+.logon-container .left .logon-section form .button {
+  margin-left: 5px;
+}
+
+.logon-container .right {
+  position: relative;
+}
+
+.logon-container .right img {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 140px;
+  z-index: -1;
+}

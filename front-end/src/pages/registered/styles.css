@@ -1,0 +1,81 @@
+.registered-container {
+  width: 85%;
+  margin: 10px auto;
+  height: 100vh;
+  max-height: 1200px;
+}
+
+/* header section */
+.registered-container header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5rem;
+}
+
+.registered-container header .first-segment {
+  display: flex;
+  align-items: center;
+  font-family: "Schoolbell", cursive;
+  font-size: 26px;
+}
+
+.registered-container header .second-segment {
+  display: flex;
+  align-items: center;
+}
+
+.registered-container header .second-segment .button {
+  cursor: pointer;
+  padding: 0 25px;
+  background: #ee1c40;
+  border-radius: 15px;
+  margin-right: 5px;
+}
+
+.registered-container header .second-segment .button.logout {
+  border: 1px solid #dcd6d6;
+  border-radius: 15px;
+  background: transparent;
+  color: #e02041;
+}
+
+/* cases section */
+
+.registered-container .cases {
+  /* put css grid style here */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  font-family: "Roboto", sans-serif;
+  margin-bottom: 5rem;
+}
+.registered-container .registered-cases h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+.registered-container .registered-cases .cases .case {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  margin: 1rem;
+  padding: 2rem;
+  border-radius: 10px;
+}
+.registered-container .registered-cases .cases .case p {
+  padding: 1rem;
+  font-family: "Roboto Mono", monospace;
+}
+
+.registered-container .registered-cases .cases .value {
+  font-family: "Roboto Mono", monospace;
+  align-self: flex-end;
+}
+
+@media only screen and (max-width: 780px) {
+  .registered-container header .first-segment h2 {
+    display: none;
+  }
+
+  .registered-container header .second-segment {
+    margin-left: -1rem;
+  }
+}
