@@ -1,14 +1,20 @@
 import React from "react";
-import Logon from "./pages/logon";
-import NewIncident from "./pages/newIncident";
-import Registered from "./pages/registered";
+import Routes from "./routes"
+
 import "./global.css";
+/*
+
+- configure api service w/ axios
+- make login w/ ong id in localhost
+- list incidents of especific ongs
+- logout
+- register new incident
+
+*/
 
 function App() {
   return (
-    <div>
-      <NewIncident />
-    </div>
+    <Routes/>
   );
 }
 
