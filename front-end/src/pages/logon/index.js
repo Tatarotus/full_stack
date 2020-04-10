@@ -20,6 +20,8 @@ export default () => {
 
       localStorage.setItem('ongId', id)
       localStorage.setItem('ongName', response.data.name)
+
+      history.push("todos-casos")
     } catch {
       alert("Falha no login, tente novament!");
     }
