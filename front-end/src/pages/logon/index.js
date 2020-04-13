@@ -22,8 +22,8 @@ export default () => {
       localStorage.setItem('ongName', response.data.name)
 
       history.push("todos-casos")
-    } catch {
-      alert("Falha no login, tente novament!");
+    } catch(err) {
+      alert(err + ". Keep cool and try again later :`)");
     }
   }
   return (
