@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { FiPower, FiChevronRight, FiChevronLeft } from "react-icons/fi";
+import {
+  FiTrash2,
+  FiPower,
+  FiChevronRight,
+  FiChevronLeft
+} from "react-icons/fi";
 
 import api from "../../services/api";
 
@@ -47,16 +52,29 @@ export default () => {
     setPagination(pagination - 1);
   }
 
+  console.log(incidents);
+  function handleDel(id) {
+    api
+      .delete(`incidents/${id}`, {
+        headers: { Authorization: ongId }
+      })
+      .then(setIncidents(incidents.filter(incident => incident.id !== id)));
+  }
+  function handleLogout() {
+    localStorage.clear();
+    history.push("/");
+  }
+
   return (
     <div className="profile-container">
       <header>
         <div className="first-segment">
           <img src={logo} draggable={false} alt="logo" className="logo" />
-          <h2 className="Welcome">Bem-vindo, Ong Talmud</h2> {/*Max 15 Char. */}
+          <h2 className="Welcome">Bem-vindo, {ongName}</h2> {/*Max 15 Char. */}
         </div>
         <div className="second-segment">
           <button className="button">Criar</button>
-          <div className="button logout">
+          <div onClick={handleLogout} className="button logout">
             <FiPower />
           </div>
         </div>
@@ -66,7 +84,12 @@ export default () => {
         <div className="cases">
           {incidents.map(incident => (
             <div key={incident.id} className="case">
-              <h4>Caso:</h4>
+              <h4>
+                Caso:{" "}
+                <span onClick={() => handleDel(incident.id)} className="del">
+                  <FiTrash2 size="18px" />
+                </span>
+              </h4>
               <p>{incident.title}</p>
               <h4>Descrição:</h4>
               <p>{incident.description}</p>
