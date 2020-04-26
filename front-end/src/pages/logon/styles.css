@@ -17,7 +17,7 @@
   max-width: 380px;
 }
 
-.logon-container .left img{
+.logon-container .left img {
   width: 100%;
   max-width: 200px;
 }
@@ -28,6 +28,13 @@
   top: 50%;
   min-width: 280px;
   transform: translateY(-50%);
+}
+
+.logon-container .left .logon-section form .no-id {
+  cursor: pointer;
+  float: right;
+  text-decoration: underline;
+  color: #364f6b;
 }
 
 .logon-container .left .logon-section form .logon {

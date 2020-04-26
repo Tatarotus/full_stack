@@ -18,11 +18,11 @@ export default () => {
     try {
       const response = await api.post("session", { id });
 
-      localStorage.setItem('ongId', id)
-      localStorage.setItem('ongName', response.data.name)
+      localStorage.setItem("ongId", id);
+      localStorage.setItem("ongName", response.data.name);
 
-      history.push("todos-casos")
-    } catch(err) {
+      history.push("todos-casos");
+    } catch (err) {
       alert(err + ". Keep cool and try again later :`)");
     }
   }
@@ -42,6 +42,9 @@ export default () => {
               onChange={e => setId(e.target.value)}
               placeholder="Coloque aqui sua ID"
             />
+            <a className="no-id" onClick={() => history.push("nova-ong")}>
+              Não possui um ID? Cadastre-se aqui!
+            </a>
             <button className="button">Enter</button>
           </form>
         </div>

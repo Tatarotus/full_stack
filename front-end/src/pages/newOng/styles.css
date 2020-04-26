@@ -1,0 +1,112 @@
+.new-ong-container {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  max-height: 1200px;
+}
+.new-ong-container .left {
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.new-ong-container .left .logo {
+  width: 100%;
+  max-width: 300px;
+}
+
+.new-ong-container .left .case-entry-info {
+  font-family: "Ropa Sans", sans-serif;
+  color: #2c3035;
+}
+
+.new-ong-container .left .case-entry-info h3 {
+  font-size: 36px;
+  margin-bottom: 2rem;
+}
+
+.new-ong-container .left .case-entry-info p {
+  font-size: 22px;
+  width: 60%;
+  margin-bottom: 8rem;
+}
+
+.new-ong-container .left .go-home {
+  margin-left: -7px;
+  font-family: "Roboto", sans-serif;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.new-ong-container .right {
+  align-self: center;
+}
+
+.new-ong-container .right form > * {
+  margin-bottom: 2rem;
+  position: relative;
+  top: 10vh;
+}
+
+.new-ong-container .right form input,
+textarea {
+  box-shadow: 0 0 6px rgba(163, 163, 163, 0.5);
+}
+
+.new-ong-container .right form input:focus,
+textarea:focus,
+#price:focus {
+  box-shadow: 0 0 6px rgba(35, 173, 255, 1);
+}
+
+.new-ong-container .right form .value {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.new-ong-container .right form .value #price {
+  width: 100px;
+}
+
+.new-ong-container .right form .value label {
+  margin-right: 1rem;
+}
+.new-ong-container .right form .value #price::-webkit-outer-spin-button,
+.new-ong-container .right form .value #price::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+@media only screen and (max-width: 1000px) {
+  .new-ong-container {
+    flex-direction: column;
+  }
+  .new-ong-container .left {
+    width: 100%;
+    align-items: center;
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+  }
+
+  .new-ong-container .left .case-entry-info p {
+    font-size: 22px;
+    width: 70%;
+    margin: 0 auto;
+    margin-bottom: 1rem;
+  }
+  .new-ong-container .left .go-home {
+    display: none;
+  }
+
+  .new-ong-container .right {
+    margin-bottom: 5rem;
+  }
+}
