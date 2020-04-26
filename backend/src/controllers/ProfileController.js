@@ -21,7 +21,6 @@ module.exports = {
 
     res.header("X-Total-Count", count["count(*)"]);
     let totalCount = count["count(*)"];
-    console.log(incidents);
     return res.json({
       incidents,
       count: totalCount
