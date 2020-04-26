@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import {
   FiTrash2,
   FiPower,
@@ -52,7 +52,6 @@ export default () => {
     setPagination(pagination - 1);
   }
 
-  console.log(incidents);
   function handleDel(id) {
     api
       .delete(`incidents/${id}`, {
@@ -73,7 +72,9 @@ export default () => {
           <h2 className="Welcome">Bem-vindo, {ongName}</h2> {/*Max 15 Char. */}
         </div>
         <div className="second-segment">
-          <button className="button">Criar</button>
+          <button onClick={() => history.push("criar-novo")} className="button">
+            Criar
+          </button>
           <div onClick={handleLogout} className="button logout">
             <FiPower />
           </div>
