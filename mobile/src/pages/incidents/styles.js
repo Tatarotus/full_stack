@@ -4,7 +4,8 @@ import Constants from "expo-constants";
 export default StyleSheet.create({
     container: {
         flex: 1,
-        paddingHorizontal: 24,
+        paddingHorizontal: 10,
+        marginBottom: 80,
         paddingTop: Constants.statusBarHeight + 20
     },
     header: {
@@ -56,6 +57,23 @@ export default StyleSheet.create({
         alignSelf: "center",
         marginTop: 10
     },
+    detailBtn: {
+        flexDirection: "row",
+        width: "100%",
+        position: "absolute",
+        fontFamily: "monospace",
+        backgroundColor: "#364f6b",
+        left: 0,
+        bottom: 0,
+        fontWeight: "bold",
+        borderBottomLeftRadius: 10,
+        padding: 10,
+        alignItems: "center"
+    },
+    detailBtnTxt: {
+        color: "#fff",
+        marginLeft: 10,
+    },
     ongName: {
         textDecorationLine: "underline",
         fontFamily: "School Bell",
@@ -64,7 +82,7 @@ export default StyleSheet.create({
         marginTop: 5,
         marginBottom: 10
     },
-    caseDescription: {
+    caseTitle: {
         width: "100%",
         fontFamily: "monospace",
         flexShrink: 1,
@@ -81,5 +99,5 @@ export default StyleSheet.create({
         fontWeight: "bold",
         borderBottomRightRadius: 10,
         padding: 10
-    }
+    },
 });
