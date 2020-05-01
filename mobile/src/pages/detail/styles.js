@@ -5,22 +5,24 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 10,
-    paddingBottom: 20,
-    paddingTop: Constants.statusBarHeight + 20,
-    backgroundColor: "#c9d6df"
+    paddingTop: Constants.statusBarHeight
   },
   header: {
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "center"
+    alignItems: "center",
+    paddingHorizontal: 7,
+    paddingVertical: 10,
+    marginHorizontal: -10,
+    backgroundColor: "#d2d4d6",
+    elevation: 2
   },
   logoContainer: {
-    width: "20%",
+    width: "20%"
   },
   logo: {
     width: "100%",
     height: 100
-
   },
   headerText: {
     fontSize: 30,
@@ -71,6 +73,7 @@ export default StyleSheet.create({
   },
   ctaBtn: {
     marginTop: 15,
+    marginBottom: 25,
     flexDirection: "row",
     justifyContent: "space-between"
   },

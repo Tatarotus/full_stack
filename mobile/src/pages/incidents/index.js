@@ -1,112 +1,84 @@
 import React, { useState, useEffect } from "react";
-import { ScrollView, View, Image, Text, TouchableOpacity } from "react-native";
+import { FlatList, View, Image, Text, TouchableOpacity } from "react-native";
 
 import { useNavigation } from "@react-navigation/native";
 import { Feather } from "@expo/vector-icons";
 import logoImg from "../../assets/Logo.png";
 import styles from "./styles";
 
+import api from "../../services/api.js";
+
 export default function Incidents() {
   const navigation = useNavigation();
+  const [total, setTotal] = useState(0);
   const [incidents, setIncidents] = useState([]);
 
-  function navigateToDetail() {
-    navigation.navigate("Detail");
+  const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(false);
+
+  function navigateToDetail(incident) {
+    navigation.navigate("Detail", { incident });
   }
 
   async function loadIncidents() {
-    const response = await api.get("Incidents");
+    if (loading) {
+      return;
+    }
+    if (total > 0 && incidents.length === total) {
+      return;
+    }
+    setLoading(true);
 
-    setIncidents(response.data);
+    const response = await api.get("incidents", { params: { page } });
+
+    setIncidents([...incidents, ...response.data.incidents]);
+    setTotal(response.headers["x-total-count"]);
+    setPage(page + 1);
+    setLoading(false);
   }
   useEffect(() => {
     loadIncidents();
   }, []);
   return (
-    <ScrollView
-      data={incidents}
-      keyExtractor={incident => String(incident.id)}
-      showVerticalScrollIndicator={false}
-    >
-      <View style={styles.container}>
-        <View style={styles.header}>
+    <View style={styles.container}>
+      <View style={styles.header}>
+        <TouchableOpacity style={styles.logoContainer} onPress={() => {}}>
           <Image style={styles.logo} source={logoImg} />
-          <Text style={styles.headerText}>
-            Total de <Text style={styles.headerTextBold}> 0 casos</Text>.
-          </Text>
-        </View>
-
-        <Text style={styles.title}>Bem-vindo!</Text>
-        <Text style={styles.description}>
-          Escolha um dos casos abaixo e salve o dia.
+        </TouchableOpacity>
+        <Text style={styles.headerText}>
+          Total de <Text style={styles.headerTextBold}>{total} casos</Text>.
         </Text>
-
-        <View style={styles.incidentList}>
-          <View style={styles.incident}>
-            <Text style={styles.ongName}>APAD</Text>
-            <Text style={styles.caseTitle}>
-              Cachorrinha atropelada na rua augusta.
-            </Text>
-            <TouchableOpacity
-              style={styles.detailBtn}
-              onPress={navigateToDetail}
-            >
-              <Feather name="briefcase" size={16} color="#fff" />
-              <Text style={styles.detailBtnTxt}>Mais detalhes</Text>
-            </TouchableOpacity>
-            <Text style={styles.caseValue}>R$120,00</Text>
-          </View>
-        </View>
-
-        <View style={styles.incidentList}>
-          <View style={styles.incident}>
-            <Text style={styles.ongName}>APAD</Text>
-            <Text style={styles.caseTitle}>
-              Cachorrinha atropelada na rua augusta.
-            </Text>
-            <TouchableOpacity
-              style={styles.detailBtn}
-              onPress={navigateToDetail}
-            >
-              <Feather name="briefcase" size={16} color="#fff" />
-              <Text style={styles.detailBtnTxt}>Mais detalhes</Text>
-            </TouchableOpacity>
-            <Text style={styles.caseValue}>R$120,00</Text>
-          </View>
-        </View>
-        <View style={styles.incidentList}>
-          <View style={styles.incident}>
-            <Text style={styles.ongName}>APAD</Text>
-            <Text style={styles.caseTitle}>
-              Cachorrinha atropelada na rua augusta.
-            </Text>
-            <TouchableOpacity
-              style={styles.detailBtn}
-              onPress={navigateToDetail}
-            >
-              <Feather name="briefcase" size={16} color="#fff" />
-              <Text style={styles.detailBtnTxt}>Mais detalhes</Text>
-            </TouchableOpacity>
-            <Text style={styles.caseValue}>R$120,00</Text>
-          </View>
-        </View>
-        <View style={styles.incidentList}>
-          <View style={styles.incident}>
-            <Text style={styles.ongName}>APAD</Text>
-            <Text style={styles.caseTitle}>
-              Cachorrinha atropelada na rua augusta.
-            </Text>
-            <TouchableOpacity
-              style={styles.detailBtn}
-              onPress={navigateToDetail}
-            >
-              <Feather name="briefcase" size={16} color="#fff" />
-              <Text style={styles.detailBtnTxt}>Mais detalhes</Text>
-            </TouchableOpacity>
-            <Text style={styles.caseValue}>R$120,00</Text>
-          </View>
-        </View>
       </View>
-    </ScrollView>
+      <FlatList
+        style={styles.incidentList}
+        data={incidents}
+        keyExtractor={(item, index) => index.toString()}
+        onEndReached={loadIncidents}
+        onEndReachedThreshold={0.2}
+        renderItem={({ item }) => (
+          <View>
+            <View style={styles.incident}>
+              <Text style={styles.ongName}>{item.title}</Text>
+              <Text style={styles.caseTitle}>{item.description}</Text>
+              <TouchableOpacity
+                style={styles.detailBtn}
+                onPress={() => {
+                  navigateToDetail(item);
+                }}
+              >
+                <Feather name="briefcase" size={16} color="#fff" />
+                <Text style={styles.detailBtnTxt}>Mais detalhes</Text>
+              </TouchableOpacity>
+              <Text style={styles.caseValue}>
+                {Intl.NumberFormat("pt-Br", {
+                  style: "currency",
+                  currency: "BRL"
+                }).format(item.value)}
+              </Text>
+            </View>
+          </View>
+        )}
+      />
+    </View>
   );
 }
